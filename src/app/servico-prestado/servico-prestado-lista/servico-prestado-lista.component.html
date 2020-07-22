@@ -1,0 +1,70 @@
+<h1 class="mt-4">Serviços Prestados</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta</li>
+</ol>
+
+<div class="container">
+    <form #consultaForm="ngForm" (submit)="search()">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputNome"> Nome Cliente:</label>
+                <input class="form-control" type="text" [(ngModel)]="name" name="name" id="inputNome" >
+            </div>
+            <div class="col-md-6">
+                <label for="inputMes"> Mês:</label>
+
+                <select [(ngModel)]="mes" class="form-control" name="mes"> 
+                    <option value="">Selectione...</option>
+                    <option *ngFor="let mes of meses" [value]="mes"> 
+                        {{mes}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary mr-2">
+                    <i class="fa fa-search"></i> 
+                    Consultar       
+                </button>
+                <button type="submit" class="btn btn-warning" routerLink="/servicos-prestados/form">
+                    <i class="fa fa-plus"></i> 
+                    Novo Serviço       
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br>
+
+    <div class="row">
+
+                <div class="alert alert-warning" role="alert" *ngIf="mensagem">
+                    {{this.mensagem}}
+                </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                    </tr>
+                
+                </thead>
+                <tbody>
+                    <tr *ngFor="let temp of lista">
+                        <td>{{temp.cliente.name}}</td>
+                        <td>{{temp.descricao}}</td>
+                        <td>{{temp.valor}}</td>
+                        <td>{{temp.data}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
